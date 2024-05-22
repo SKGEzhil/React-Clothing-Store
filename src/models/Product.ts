@@ -3,7 +3,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 class Product {
     id: number;
-    size: sizes;
+    size: number[];
     image: string;
     title: string;
     // quantity: number;
@@ -15,7 +15,7 @@ class Product {
 
     constructor(id: number, image: string, title: string, rating: number, reviews: number, originalPrice: number, discount: number, finalPrice: number) {
         this.id = id;
-        this.size = sizes.s;
+        this.size = [];
         // this.quantity = 1;
         this.image = image;
         this.title = title;
@@ -27,6 +27,6 @@ class Product {
     }
 }
 
-enum sizes {
-    xs = 0, s=1, m=2, l=3, xl=4,xxl=5
-}
+// enum sizes {
+//     xs = 0, s=1, m=2, l=3, xl=4,xxl=5
+// }

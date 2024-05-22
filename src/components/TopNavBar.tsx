@@ -1,9 +1,13 @@
-import React from 'react';
-import {FaSearch, FaShoppingCart, FaUser} from "react-icons/fa";
+import React, {useContext} from 'react';
+import { FaShoppingCart, FaUser} from "react-icons/fa";
 import SearchBar from "./SearchBar.tsx";
 import {NavLink} from "react-router-dom";
+import {AppContext} from "../app_context.tsx";
 
 const TopNavBar: React.FC = () => {
+
+    const {cartItems} = useContext(AppContext);
+
     return (
         <div className="">
 
@@ -56,7 +60,9 @@ const TopNavBar: React.FC = () => {
                     {/*    <FaSearch/>*/}
                     {/*</button>*/}
                     <NavLink to={"/app/cart"}>
-                        <button className="text-gray-800 hover:text-gray-600">
+                        <button
+                            onClick={() => {console.log("Cart Items: ", cartItems)} }
+                            className="text-gray-800 hover:text-gray-600">
                             <FaShoppingCart/>
                         </button>
                     </NavLink>

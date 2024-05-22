@@ -1,4 +1,5 @@
 import React from 'react';
+import {useMediaQuery} from "react-responsive";
 
 interface CheckoutCardProps {
     totalItems: number;
@@ -19,8 +20,13 @@ const CheckoutCard: React.FC<CheckoutCardProps> = ({
                                                        totalAmount,
                                                        onPlaceOrder,
                                                    }) => {
+
+    const screen_1000 = useMediaQuery({
+        query: '(max-width: 1000px)'
+    })
+
     return (
-        <div className="p-4 rounded-lg shadow-lg w-1/4 mx-4 h-min">
+        <div className={`p-4 rounded-lg shadow-lg ${screen_1000 ? "w-full" : "w-1/4"} h-min`}>
             <h2 className="text-lg font-semibold mb-4">PRICE DETAILS ({totalItems} items)</h2>
             <div className="flex justify-between mb-2">
                 <span className="text-gray-600">Total MRP</span>

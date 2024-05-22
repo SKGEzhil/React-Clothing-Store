@@ -25,11 +25,15 @@ const FilterBar: React.FC = () => {
 
     const applyFilters = () => {
         const filteredProducts = products.filter(product => {
-            const isSizeMatch = selectedSizes.includes(product.size);
+            // const isSizeMatch = selectedSizes.includes(product.size);
+            const isSizeMatch = () => {
+                if (selectedSizes.length === 0) return true;
+                return selectedSizes.some(size => product.size.includes(size));
+            }
             const isPriceMatch = product.finalPrice >= priceRange[0] && product.finalPrice <= priceRange[1];
             const isRatingMatch = product.rating >= rating;
 
-            return isSizeMatch && isPriceMatch && isRatingMatch;
+            return isSizeMatch() && isPriceMatch && isRatingMatch;
         });
 
         setFilteredProductList(filteredProducts);

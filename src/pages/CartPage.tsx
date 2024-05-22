@@ -4,23 +4,22 @@ import {useContext} from "react";
 import {AppContext} from "../app_context.tsx";
 import CartItem from "../components/CartItem.tsx";
 import CheckoutCard from "../components/CheckoutCard.tsx";
+import {useNavigate} from "react-router-dom";
 
 
 function CartPage() {
 
-    // const screen_1700 = useMediaQuery({
-    //     query: '(max-width: 1700px)'
-    // })
-    // const screen_1200 = useMediaQuery({
-    //     query: '(max-width: 1200px)'
-    // })
-    // const screen_2000 = useMediaQuery({query: '(max-width: 2000px)'})
-    // const screen_1500 = useMediaQuery({query: '(max-width: 1500px)'})
+    const navigate = useNavigate();
 
+    const screen_1000 = useMediaQuery({
+        query: '(max-width: 1000px)'
+    })
 
     // AppContext
     const {cartItems, setCartItems} = useContext(AppContext);
     const {selectedItems, setSelectedItems} = useContext(AppContext);
+
+    const isCartEmpty = cartItems.length == 0;
 
     // Calculations
     const totalMRP = () => {
@@ -53,17 +52,88 @@ function CartPage() {
         return total;
     }
 
+    const onSizeChange = (newSize: number, product: CartItemType) => {
+        const newCartItems = cartItems.map((item) => {
+            if (item.id === product.id) {
+                return {...item, selectedSize: newSize};
+            }
+            return item;
+        });
+        setCartItems(newCartItems);
+        const newSelectedItems = selectedItems.map((item) => {
+            if (item.id === product.id) {
+                return {...item, selectedSize: newSize};
+            }
+            return item;
+        });
+        setSelectedItems(newSelectedItems);
+    }
+
+    const onQuantityChange = (newQuantity: number, product: CartItemType) => {
+        const newCartItems = cartItems.map((item) => {
+            if (item.id === product.id) {
+                return {...item, quantity: newQuantity};
+            }
+            return item;
+        });
+        setCartItems(newCartItems);
+        const newSelectedItems = selectedItems.map((item) => {
+                if (item.id === product.id) {
+                    return {...item, quantity: newQuantity};
+                }
+                return item;
+            }
+        );
+        setSelectedItems(newSelectedItems);
+    }
+
+    const onRemove = (product: CartItemType) => {
+        const newCartItems = cartItems.filter((item) => item.id !== product.id);
+        const newSelectedItems = selectedItems.filter((item) => item.id !== product.id);
+        setCartItems(newCartItems);
+        setSelectedItems(newSelectedItems);
+    }
+
     // Render Component
     return (
         <>
             <div className="relative z-20">
                 <TopNavBar/>
             </div>
-            <div className="relative top-20 ml-4">
-                <h1 className="text-4xl font-bold ml-4 mb-4">Items in ur cart</h1>
-                <div className="flex">
+            <div className="relative top-20 mx-4">
+                <h1 className="text-4xl font-bold mb-4">{isCartEmpty ? "No Items in ur cart" : "Items in ur cart"}</h1>
+                {
+                    isCartEmpty ?
+                        <button
+                            onClick={() => {
+                                navigate("/app")
+                            }}
+                            className="px-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
+                        >
+                            Browse More Products
+                        </button> :
+
+                        <div className="flex gap-2">
+                            <a
+                                onClick={() => {
+                                    setSelectedItems(cartItems);
+                                }}
+                                className="text-red-500 underline cursor-pointer hover:text-red-600 active:text-red-500">
+                                Select all
+                            </a>
+                            <a
+                                onClick={() => {
+                                    setSelectedItems([]);
+                                }}
+                                className="text-red-500 underline cursor-pointer hover:text-red-600 active:text-red-500">
+                                Deselect all
+                            </a>
+                        </div>
+
+                }
+                <div className={`${screen_1000 ? "grid " : "flex"}`}>
                     <div
-                        className={`grow grid row-auto gap-5 mr-0 ml-4}`}>
+                        className={`grid grow h-min ${screen_1000 ? "" : "mr-4"}`}>
                         {
                             cartItems.map((product) => {
                                 return (
@@ -73,42 +143,26 @@ function CartPage() {
                                         title={product.title}
                                         seller={"product.seller"}
                                         size={product.size}
+                                        selectedSize={product.selectedSize}
                                         quantity={product.quantity}
                                         finalPrice={product.finalPrice}
                                         originalPrice={product.originalPrice}
                                         discount={product.discount}
                                         onRemove={() => {
-                                            const newCartItems = cartItems.filter((item) => item.id !== product.id);
-                                            setCartItems(newCartItems);
+                                            onRemove(product);
                                         }}
-                                        onSizeChange={(newSize) => {
-                                            //TODO: Implement this
-                                            }
-                                        }
+                                        onSizeChange={(newSize: number) => {
+                                            onSizeChange(newSize, product);
+                                        }}
                                         onQuantityChange={(newQuantity) => {
-                                            const newCartItems = cartItems.map((item) => {
-                                                if (item.id === product.id) {
-                                                    return {...item, quantity: newQuantity};
-                                                }
-                                                return item;
-                                            });
-                                            setCartItems(newCartItems);
-                                            const newSelectedItems = selectedItems.map((item) => {
-                                                    if (item.id === product.id) {
-                                                        return {...item, quantity: newQuantity};
-                                                    }
-                                                    return item;
-                                                }
-                                            );
-                                            setSelectedItems(newSelectedItems);
-                                        }
-                                        }
-
+                                            onQuantityChange(newQuantity, product);
+                                        }}
                                     />
                                 );
                             })
                         }
                     </div>
+
                     <CheckoutCard
                         totalItems={selectedItems.length}
                         totalMRP={totalMRP()}

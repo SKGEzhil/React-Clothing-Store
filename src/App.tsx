@@ -8,6 +8,7 @@ import {AppContext} from "./app_context.tsx";
 import {useState} from "react";
 import {products} from "./constants.tsx";
 import CartPage from "./pages/CartPage.tsx";
+import {Bounce, ToastContainer} from "react-toastify";
 
 export const base_route = "/app";
 function App(){

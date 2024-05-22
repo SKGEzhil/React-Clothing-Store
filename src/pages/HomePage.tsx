@@ -4,6 +4,9 @@ import FilterBar from "../components/FilterBar.tsx";
 import {useMediaQuery} from 'react-responsive'
 import {useContext} from "react";
 import {AppContext} from "../app_context.tsx";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 function HomePage() {
@@ -22,8 +25,11 @@ function HomePage() {
 
     return (
         <>
+
             <div className="relative z-20">
                 <TopNavBar/>
+                <ToastContainer />
+
 
             </div>
 

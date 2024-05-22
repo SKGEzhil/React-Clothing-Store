@@ -6,13 +6,14 @@ interface CartItemProps {
     image: string;
     title: string;
     seller: string;
-    size: number;
+    size: number[];
+    selectedSize: number;
     quantity: number;
     finalPrice: number;
     originalPrice: number;
     discount: number;
     onRemove: () => void;
-    onSizeChange: (size: string) => void;
+    onSizeChange: (size: number) => void;
     onQuantityChange: (quantity: number) => void;
 }
 
@@ -22,6 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({
                                                title,
                                                seller,
                                                size,
+                                                selectedSize,
                                                quantity,
                                                finalPrice,
                                                originalPrice,
@@ -33,6 +35,8 @@ const CartItem: React.FC<CartItemProps> = ({
 
     const {selectedItems, setSelectedItems} = useContext(AppContext);
 
+    const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
     return (
         <div className="flex items-center justify-between p-4 rounded-lg shadow-lg">
             <div className="flex items-center">
@@ -43,6 +47,7 @@ const CartItem: React.FC<CartItemProps> = ({
                            const newSelectedItems = selectedItems.some((item) => item.id === id) ? selectedItems.filter((item) => item.id !== id) : [...selectedItems, {
                                id,
                                size,
+                               selectedSize,
                                quantity,
                                finalPrice,
                                originalPrice,
@@ -64,14 +69,13 @@ const CartItem: React.FC<CartItemProps> = ({
                             <label htmlFor="size" className="text-sm text-gray-500">Size:</label>
                             <select
                                 id="size"
-                                value={size}
-                                onChange={(e) => onSizeChange(e.target.value)}
+                                value={selectedSize === 6 ? 0 : selectedSize}
+                                onChange={(e) => onSizeChange(Number(e.target.value))}
                                 className="ml-2 border border-gray-300 rounded-md text-sm"
                             >
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
+                                {size.map((s, index) => (
+                                    <option key={index} value={s}>{sizeList[s]}</option>
+                                ))}
                             </select>
                         </div>
                         <div>
@@ -90,7 +94,7 @@ const CartItem: React.FC<CartItemProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 ml-10">
                 <div className="text-right">
                     <p className="text-lg font-bold text-gray-800">₹{finalPrice}</p>
                     <p className="text-sm text-gray-500 line-through">₹{originalPrice}</p>
