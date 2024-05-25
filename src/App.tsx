@@ -3,12 +3,12 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import HomePage from "./pages/HomePage.tsx";
+import ShopPage from "./pages/ShopPage.tsx";
 import {AppContext} from "./app_context.tsx";
 import {useState} from "react";
 import {products} from "./constants.tsx";
 import CartPage from "./pages/CartPage.tsx";
-import {Bounce, ToastContainer} from "react-toastify";
+import HomePage from "./pages/HomePage.tsx";
 
 export const base_route = "/app";
 function App(){
@@ -19,6 +19,11 @@ function App(){
 
     const router = createBrowserRouter([
 
+            {
+                path: `${base_route}/shop`,
+                errorElement: <ErrorPage/>,
+                element: <ShopPage />,
+            },
             {
                 path: `${base_route}/`,
                 errorElement: <ErrorPage/>,

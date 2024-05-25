@@ -1,37 +1,33 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { FaShoppingCart, FaUser} from "react-icons/fa";
 import SearchBar from "./SearchBar.tsx";
 import {NavLink} from "react-router-dom";
 import {AppContext} from "../app_context.tsx";
+import {TiThMenu} from "react-icons/ti";
+import Menu from "./Menu.tsx";
 
 const TopNavBar: React.FC = () => {
 
     const {cartItems} = useContext(AppContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <div className="">
-
+            <Menu isOpen={isMenuOpen} onClose={() => {
+                setIsMenuOpen(false);
+            } }/>
             <div
                 className="bg-white border-b border-gray-200 shadow-sm fixed flex w-full justify-between items-center p-4">
                 {/* Logo */}
-                <div className="flex-shrink-0">
+
+                <div className="flex justify-between items-center">
+                    <button onClick={() => {
+                        isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
+                        console.log("Menu Open: ", isMenuOpen);
+                    }}>
+                        <TiThMenu className="mr-2 md:hidden"/>
+                    </button>
                     <NavLink to="/app" className="flex items-center text-gray-800 text-lg font-semibold">
-              <span className="mr-2">
-                {/*<svg*/}
-                  {/*    className="w-6 h-6"*/}
-                  {/*    fill="none"*/}
-                  {/*    stroke="currentColor"*/}
-                  {/*    viewBox="0 0 24 24"*/}
-                  {/*    xmlns="http://www.w3.org/2000/svg"*/}
-                  {/*>*/}
-                  {/*  <path*/}
-                  {/*      strokeLinecap="round"*/}
-                  {/*      strokeLinejoin="round"*/}
-                  {/*      strokeWidth={2}*/}
-                  {/*      d="M12 6v6l4 2"*/}
-                  {/*  />*/}
-                  {/*</svg>*/}
-              </span>
                         React Clothing Store
                     </NavLink>
                 </div>
@@ -42,7 +38,7 @@ const TopNavBar: React.FC = () => {
                     <NavLink to={"/app"} className="text-gray-800 hover:text-gray-600">
                         Home
                     </NavLink>
-                    <NavLink to={"#shop"} className="text-gray-800 hover:text-gray-600">
+                    <NavLink to={"/app/shop"} className="text-gray-800 hover:text-gray-600">
                         Shop
                     </NavLink>
                     <NavLink to={"#about"} className="text-gray-800 hover:text-gray-600">
@@ -55,10 +51,10 @@ const TopNavBar: React.FC = () => {
 
                 {/* Icons */}
                 <div className="flex items-center space-x-4">
-                    <SearchBar/>
-                    {/*<button className="text-gray-800 hover:text-gray-600">*/}
-                    {/*    <FaSearch/>*/}
-                    {/*</button>*/}
+                    <div className="sm:flex hidden">
+                        <SearchBar/>
+                    </div>
+
                     <NavLink to={"/app/cart"}>
                         <button
                             onClick={() => {console.log("Cart Items: ", cartItems)} }

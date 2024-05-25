@@ -1,70 +1,41 @@
+import Banner from "../components/Banner.tsx";
 import TopNavBar from "../components/TopNavBar.tsx";
-import ProductItem from "../components/ProductItem.tsx";
-import FilterBar from "../components/FilterBar.tsx";
-import {useMediaQuery} from 'react-responsive'
-import {useContext} from "react";
-import {AppContext} from "../app_context.tsx";
-import {ToastContainer} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-
+import CategoryCard from "../components/CategoryCard.tsx";
 
 function HomePage() {
 
-    const screen_1700 = useMediaQuery({
-        query: '(max-width: 1700px)'
-    })
-    const screen_1200 = useMediaQuery({
-        query: '(max-width: 1200px)'
-    })
-    const screen_2000 = useMediaQuery({query: '(max-width: 2000px)'})
-    const screen_1500 = useMediaQuery({query: '(max-width: 1500px)'})
+    const categories = [
+        {
+            image: 'https://via.placeholder.com/400x500',
+            title: 'WOMEN',
+        },
+        {
+            image: 'https://via.placeholder.com/400x500',
+            title: 'MEN',
+        },
+        {
+            image: 'https://via.placeholder.com/400x500',
+            title: 'KIDS',
+        },
+    ];
 
-
-    const {filteredProductList} = useContext(AppContext);
-
-    return (
+    return(
         <>
-
             <div className="relative z-20">
                 <TopNavBar/>
-                <ToastContainer />
-
-
             </div>
-
             <div className="relative top-20">
-                <div className="fixed">
-                    <FilterBar/>
-                </div>
-                <div className="flex">
-                    <div className="w-72"></div>
-                    <div
-                        className={`grow grid ${screen_1200 ? "grid-cols-2" : screen_1500 ? "grid-cols-3" : screen_1700 ? "grid-cols-4" : screen_2000 ? "grid-cols-5" : "grid-cols-6"} gap-5 mr-2}`}>
-                        {
-                            filteredProductList.map((product) => {
-                                return (
-                                    <ProductItem
-                                        id={product.id}
-                                        size={product.size}
-                                        image={product.image}
-                                        title={product.title}
-                                        rating={product.rating}
-                                        reviews={product.reviews}
-                                        originalPrice={product.originalPrice}
-                                        discount={product.discount}
-                                        finalPrice={product.finalPrice} quantity={1}/>
-                                );
-                            })
-                        }
+                <Banner/>
+                <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+                        {categories.map((category, index) => (
+                            <CategoryCard key={index} image={category.image} title={category.title}/>
+                        ))}
                     </div>
                 </div>
-
             </div>
-
-
         </>
-    );
+    )
 }
 
 export default HomePage;

@@ -77,7 +77,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
     };
 
     return (
-        <div className="w-72 mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
+        <div className="sm:w-64 w-52 mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
             <img src={image} alt={title} className="w-full h-48 object-cover"/>
             <div className="p-4">
                 <h3 className="text-gray-900 text-lg font-semibold mb-2 truncate">{title}</h3>
