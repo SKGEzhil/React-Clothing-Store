@@ -2,10 +2,13 @@ import React, {useContext, useState} from 'react';
 import {FaSearch} from "react-icons/fa";
 import {AppContext} from "../app_context.tsx";
 import {products} from "../constants.tsx";
+import {useNavigate} from "react-router-dom";
 
 const SearchBar: React.FC = () => {
     const [searchText, setSearchText] = useState('');
-    const {filteredProductList, setFilteredProductList} = useContext(AppContext);
+    const {setFilteredProductList} = useContext(AppContext);
+
+    const navigate = useNavigate();
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
@@ -14,7 +17,7 @@ const SearchBar: React.FC = () => {
             setFilteredProductList(products);
             return;
         }
-        const filteredProducts = filteredProductList.filter(product => product.title.toLowerCase().includes(e.target.value.toLowerCase()));
+        const filteredProducts = products.filter(product => product.title.toLowerCase().includes(e.target.value.toLowerCase()));
         setFilteredProductList(filteredProducts);
         // handleSearchClick()
     };
@@ -27,8 +30,9 @@ const SearchBar: React.FC = () => {
             return;
         }
 
-        const filteredProducts = filteredProductList.filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()));
+        const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()));
         setFilteredProductList(filteredProducts);
+        navigate('/app/shop')
         console.log('Search text:', searchText);
     };
 

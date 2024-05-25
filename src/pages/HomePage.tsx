@@ -1,23 +1,15 @@
 import Banner from "../components/Banner.tsx";
 import TopNavBar from "../components/TopNavBar.tsx";
 import CategoryCard from "../components/CategoryCard.tsx";
+import {AppContext} from "../app_context.tsx";
+import {useContext} from "react";
+import {useNavigate} from "react-router-dom";
+import {categories, products} from "../constants.tsx";
 
 function HomePage() {
 
-    const categories = [
-        {
-            image: 'https://via.placeholder.com/400x500',
-            title: 'WOMEN',
-        },
-        {
-            image: 'https://via.placeholder.com/400x500',
-            title: 'MEN',
-        },
-        {
-            image: 'https://via.placeholder.com/400x500',
-            title: 'KIDS',
-        },
-    ];
+    const {setFilteredProductList} = useContext(AppContext);
+    const navigate = useNavigate();
 
     return(
         <>
@@ -29,7 +21,11 @@ function HomePage() {
                 <div className="container mx-auto px-6 md:px-12 lg:px-20 py-16">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
                         {categories.map((category, index) => (
-                            <CategoryCard key={index} image={category.image} title={category.title}/>
+                            <CategoryCard key={index} image={category.image} onClick={() => {
+                                console.log('Category Clicked: ', category.title);
+                                setFilteredProductList(products.filter(product => product.category === category.title.toLowerCase()));
+                                navigate('/app/shop')
+                            }} title={category.title}/>
                         ))}
                     </div>
                 </div>

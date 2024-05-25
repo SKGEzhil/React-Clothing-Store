@@ -5,6 +5,7 @@ import {AppContext} from "../app_context.tsx";
 import CartItem from "../components/CartItem.tsx";
 import CheckoutCard from "../components/CheckoutCard.tsx";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 
 function CartPage() {
@@ -170,9 +171,22 @@ function CartPage() {
                         couponDiscount={0}
                         shippingFee={0}
                         totalAmount={totalAmount()}
-                        onPlaceOrder={
-                            function (): void {
-                                throw new Error("Function not implemented.");
+                        onPlaceOrder={() => {
+                            toast.success(
+                                "Order Placed Successfully",
+                                {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                });
+
+                            setCartItems([]);
+                            setSelectedItems([]);
+
                             }
                         }
                     />

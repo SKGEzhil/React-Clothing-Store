@@ -9,6 +9,7 @@ import {useState} from "react";
 import {products} from "./constants.tsx";
 import CartPage from "./pages/CartPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
+import {ToastContainer} from "react-toastify";
 
 export const base_route = "/app";
 function App(){
@@ -43,6 +44,7 @@ function App(){
 
             <AppContext.Provider value={{filteredProductList, setFilteredProductList, cartItems, setCartItems, selectedItems, setSelectedItems}}>
                 <RouterProvider router={router} />
+                <ToastContainer />
             </AppContext.Provider>
 
         </>

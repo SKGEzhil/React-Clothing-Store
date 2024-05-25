@@ -8,8 +8,8 @@ const Banner: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="relative bg-gray-100 py-16">
-            <div className="container px-6 mx-auto md:px-12 lg:px-20 flex flex-col lg:gap-48 md:flex-row justify-between items-center">
+        <div className="relative bg-blue-50">
+            <div className="container bg-blue-50 py-6 px-6 mx-auto md:px-12 lg:px-20 flex flex-col lg:gap-48 md:flex-row justify-between items-center">
                 <div className="flex-1 grow ">
                     <div className="bg-white inline-block rounded-full px-4 py-2 mb-4">
                         <span className="text-gray-700 font-medium">Enjoy 50% OFF in Our Summer Super Sale!</span>
@@ -28,11 +28,11 @@ const Banner: React.FC = () => {
                         Shop Now &rarr;
                     </button>
                 </div>
-                <div className=" mt-8 md:mt-0">
-                    <img src="https://via.placeholder.com/400x500" alt="Promotion" className="w-full h-full object-cover rounded-lg" />
+                <div className=" mt-8 md:mt-0 w-96">
+                    <img src="https://assets.myntassets.com/fl_progressive/h_960,q_80,w_720/v1/assets/images/12947370/2021/3/13/3e6159e7-42fb-46ec-909e-665eddef87721615625140783-Roadster-Men-Shirts-4651615625139103-1.jpg" alt="Promotion" className="w-full h-full object-cover rounded-lg" />
                 </div>
             </div>
-            <div className="container mx-auto px-6 md:px-12 lg:px-20 mt-12">
+            <div className="container mx-auto px-6 md:px-12 lg:px-20 py-12">
                 <div className="grid grid-cols-1 sm:grid-cols-3 lg:gap-4 gap-12 text-center">
                     <div>
                         <FaShippingFast size={45} className="mx-auto mb-2"/>

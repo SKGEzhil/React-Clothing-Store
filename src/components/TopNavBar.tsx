@@ -1,13 +1,14 @@
 import React, {useContext, useState} from 'react';
 import { FaShoppingCart, FaUser} from "react-icons/fa";
 import SearchBar from "./SearchBar.tsx";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {AppContext} from "../app_context.tsx";
 import {TiThMenu} from "react-icons/ti";
 import Menu from "./Menu.tsx";
 
 const TopNavBar: React.FC = () => {
 
+    const navigate = useNavigate();
     const {cartItems} = useContext(AppContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -44,7 +45,7 @@ const TopNavBar: React.FC = () => {
                     <NavLink to={"#about"} className="text-gray-800 hover:text-gray-600">
                         About Us
                     </NavLink>
-                    <NavLink to={"#github"} className="text-gray-800 hover:text-gray-600">
+                    <NavLink target="_blank" to={"https://github.com/SKGEzhil"} className="text-gray-800 hover:text-gray-600">
                         GitHub
                     </NavLink>
                 </div>
@@ -63,7 +64,9 @@ const TopNavBar: React.FC = () => {
                         </button>
                     </NavLink>
 
-                    <button className="text-gray-800 hover:text-gray-600">
+                    <button
+                        onClick={() => {navigate("#profile")}}
+                        className="text-gray-800 hover:text-gray-600">
                         <FaUser/>
                     </button>
                 </div>

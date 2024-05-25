@@ -12,9 +12,11 @@ class Product {
     originalPrice: number;
     discount: number;
     finalPrice: number;
+    category: string;
 
-    constructor(id: number, image: string, title: string, rating: number, reviews: number, originalPrice: number, discount: number, finalPrice: number) {
+    constructor(id: number, image: string, title: string, rating: number, reviews: number, originalPrice: number, discount: number, finalPrice: number, category: string) {
         this.id = id;
+        this.category = category;
         this.size = [];
         // this.quantity = 1;
         this.image = image;
@@ -27,6 +29,3 @@ class Product {
     }
 }
 
-// enum sizes {
-//     xs = 0, s=1, m=2, l=3, xl=4,xxl=5
-// }
