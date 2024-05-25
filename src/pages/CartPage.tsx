@@ -6,6 +6,7 @@ import CartItem from "../components/CartItem.tsx";
 import CheckoutCard from "../components/CheckoutCard.tsx";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import {base_route} from "../App.tsx";
 
 
 function CartPage() {
@@ -107,7 +108,7 @@ function CartPage() {
                     isCartEmpty ?
                         <button
                             onClick={() => {
-                                navigate("/app")
+                                navigate(`${base_route}/shop`);
                             }}
                             className="px-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
                         >
