@@ -3,6 +3,7 @@ import {AppContext} from "../app_context.tsx";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {useNavigate} from "react-router-dom";
+import {base_route} from "../App.tsx";
 
 
 interface ProductItemProps {
@@ -108,7 +109,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
 
                 <button className={`mt-4 w-full ${isItemInCart ? "bg-gray-800 hover:bg-gray-900" : "bg-red-500 hover:bg-red-600"} text-white py-2 rounded-lg`}
                         onClick={() => {
-                            isItemInCart ? navigate("/app/cart") : addToCart();
+                            isItemInCart ? navigate(`${base_route}/cart`) : addToCart();
                         }}
                 >
                     {isItemInCart ? "View in Cart" : "Add to cart"}

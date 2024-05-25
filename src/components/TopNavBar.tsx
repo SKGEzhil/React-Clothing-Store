@@ -5,6 +5,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {AppContext} from "../app_context.tsx";
 import {TiThMenu} from "react-icons/ti";
 import Menu from "./Menu.tsx";
+import {base_route} from "../App.tsx";
 
 const TopNavBar: React.FC = () => {
 
@@ -28,7 +29,7 @@ const TopNavBar: React.FC = () => {
                     }}>
                         <TiThMenu className="mr-2 md:hidden"/>
                     </button>
-                    <NavLink to="/app" className="flex items-center text-gray-800 text-lg font-semibold">
+                    <NavLink to={`${base_route}`} className="flex items-center text-gray-800 text-lg font-semibold">
                         React Clothing Store
                     </NavLink>
                 </div>
@@ -36,10 +37,10 @@ const TopNavBar: React.FC = () => {
                 {/* Navigation Links */}
                 <div className="hidden md:flex space-x-8">
 
-                    <NavLink to={"/app"} className="text-gray-800 hover:text-gray-600">
+                    <NavLink to={`${base_route}`} className="text-gray-800 hover:text-gray-600">
                         Home
                     </NavLink>
-                    <NavLink to={"/app/shop"} className="text-gray-800 hover:text-gray-600">
+                    <NavLink to={`${base_route}/shop`} className="text-gray-800 hover:text-gray-600">
                         Shop
                     </NavLink>
                     <NavLink to={"#about"} className="text-gray-800 hover:text-gray-600">
@@ -56,7 +57,7 @@ const TopNavBar: React.FC = () => {
                         <SearchBar/>
                     </div>
 
-                    <NavLink to={"/app/cart"}>
+                    <NavLink to={`${base_route}/cart`}>
                         <button
                             onClick={() => {console.log("Cart Items: ", cartItems)} }
                             className="text-gray-800 hover:text-gray-600">

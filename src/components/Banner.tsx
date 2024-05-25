@@ -2,6 +2,7 @@ import React from 'react';
 import { FaPhone, FaShippingFast} from "react-icons/fa";
 import {FaMoneyBillTransfer} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
+import {base_route} from "../App.tsx";
 
 const Banner: React.FC = () => {
 
@@ -22,7 +23,7 @@ const Banner: React.FC = () => {
                     </p>
                     <button
                         onClick={() => {
-                            navigate("/app/shop")
+                            navigate(`${base_route}/shop`)
                         }}
                         className="bg-gray-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-900">
                         Shop Now &rarr;

@@ -3,6 +3,7 @@ import {FaSearch} from "react-icons/fa";
 import {AppContext} from "../app_context.tsx";
 import {products} from "../constants.tsx";
 import {useNavigate} from "react-router-dom";
+import {base_route} from "../App.tsx";
 
 const SearchBar: React.FC = () => {
     const [searchText, setSearchText] = useState('');
@@ -32,7 +33,7 @@ const SearchBar: React.FC = () => {
 
         const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()));
         setFilteredProductList(filteredProducts);
-        navigate('/app/shop')
+        navigate(`${base_route}/shop`)
         console.log('Search text:', searchText);
     };
 

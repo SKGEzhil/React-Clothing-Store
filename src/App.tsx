@@ -11,7 +11,7 @@ import CartPage from "./pages/CartPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import {ToastContainer} from "react-toastify";
 
-export const base_route = "/app";
+export const base_route = "/React-Clothing-Store";
 function App(){
 
     const [filteredProductList, setFilteredProductList] = useState(products)

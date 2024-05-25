@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import {NavLink} from "react-router-dom";
+import {base_route} from "../App.tsx";
 
 interface MenuProps {
     isOpen: boolean;
@@ -28,12 +29,12 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onClose }) => {
             <nav className="mt-6 flex justify-between items-centerx">
                 <ul className="space-y-4">
                     <li>
-                        <NavLink to={"/app"} className="text-2xl text-gray-900 hover:text-gray-700">
+                        <NavLink to={`${base_route}`} className="text-2xl text-gray-900 hover:text-gray-700">
                             Home
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={"/app/shop"} className="text-2xl text-gray-900 hover:text-gray-700">
+                        <NavLink to={`${base_route}/shop`} className="text-2xl text-gray-900 hover:text-gray-700">
                             Shop
                         </NavLink>
                     </li>
@@ -43,7 +44,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onClose }) => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={"#github"} className="text-2xl text-gray-900 hover:text-gray-700">
+                        <NavLink to={"https://github.com/SKGEzhil"} target={"_blank"} className="text-2xl text-gray-900 hover:text-gray-700">
                             GitHub
                         </NavLink>
                     </li>

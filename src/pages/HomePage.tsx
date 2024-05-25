@@ -5,6 +5,7 @@ import {AppContext} from "../app_context.tsx";
 import {useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import {categories, products} from "../constants.tsx";
+import {base_route} from "../App.tsx";
 
 function HomePage() {
 
@@ -24,7 +25,7 @@ function HomePage() {
                             <CategoryCard key={index} image={category.image} onClick={() => {
                                 console.log('Category Clicked: ', category.title);
                                 setFilteredProductList(products.filter(product => product.category === category.title.toLowerCase()));
-                                navigate('/app/shop')
+                                navigate(`${base_route}/shop`)
                             }} title={category.title}/>
                         ))}
                     </div>
