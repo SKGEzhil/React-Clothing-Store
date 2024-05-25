@@ -39,12 +39,12 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onClose }) => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={"#about"} className="text-2xl text-gray-900 hover:text-gray-700">
+                        <NavLink to={"https://github.com/SKGEzhil"} className="text-2xl text-gray-900 hover:text-gray-700">
                             About Us
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to={"https://github.com/SKGEzhil"} target={"_blank"} className="text-2xl text-gray-900 hover:text-gray-700">
+                        <NavLink to={"https://github.com/SKGEzhil/React-Clothing-Store"} target={"_blank"} className="text-2xl text-gray-900 hover:text-gray-700">
                             GitHub
                         </NavLink>
                     </li>

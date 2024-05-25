@@ -43,10 +43,10 @@ const TopNavBar: React.FC = () => {
                     <NavLink to={`${base_route}/shop`} className="text-gray-800 hover:text-gray-600">
                         Shop
                     </NavLink>
-                    <NavLink to={"#about"} className="text-gray-800 hover:text-gray-600">
+                    <NavLink to={"https://github.com/SKGEzhil"} className="text-gray-800 hover:text-gray-600">
                         About Us
                     </NavLink>
-                    <NavLink target="_blank" to={"https://github.com/SKGEzhil"} className="text-gray-800 hover:text-gray-600">
+                    <NavLink target="_blank" to={"https://github.com/SKGEzhil/React-Clothing-Store"} className="text-gray-800 hover:text-gray-600">
                         GitHub
                     </NavLink>
                 </div>
